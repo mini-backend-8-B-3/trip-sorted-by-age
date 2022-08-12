@@ -1,5 +1,7 @@
-package com.hanghae.minipj;
+package com.hanghae.minipj.Controller;
 
+import com.hanghae.minipj.ResponseDto;
+import com.hanghae.minipj.Service.CommentService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +14,7 @@ public class CommentController {
 
     @PostMapping("/api/auth/comments")
     public ResponseDto<?> createComment(@RequestBody CommentRequestDto requestDto,
-                                         HttpServletRequest request){
+                                        HttpServletRequest request){
         return commentService.createComment(request,requestDto);
     }
     @GetMapping("/api/comments")
@@ -21,8 +23,8 @@ public class CommentController {
     }
 
     @PutMapping("/api/auth/comments/{id}")
-    public ResponseDto<?> updateComment(@RequestBody CommentRequestDto requestDto, HttpServletRequest request){
-        return commentService.updateComment(request,requestDto);
+    public ResponseDto<?> updateComment(@RequestBody CommentRequestDto requestDto, HttpServletRequest request, @PathVariable Long id){
+        return commentService.updateComment(id, request,requestDto);
     }
 
     @DeleteMapping("/api/auth/comments/{id}")

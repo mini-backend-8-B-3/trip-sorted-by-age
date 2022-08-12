@@ -1,5 +1,14 @@
-package com.hanghae.minipj;
+package com.hanghae.minipj.Service;
 
+
+import com.hanghae.minipj.Card;
+import com.hanghae.minipj.Comment;
+import com.hanghae.minipj.Controller.CommentRequestDto;
+import com.hanghae.minipj.Controller.CommentResponseDto;
+import com.hanghae.minipj.Member;
+import com.hanghae.minipj.ResponseDto;
+import com.hanghae.minipj.repository.CardRepository;
+import com.hanghae.minipj.repository.CommentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,7 +64,7 @@ public class CommentService {
         return ResponseDto.success(commentResponseDto);
     }
 
-    public ResponseDto<?> updateComment(HttpServletRequest request, CommentRequestDto requestDto){
+    public ResponseDto<?> updateComment(Long id, HttpServletRequest request, CommentRequestDto requestDto){
         if (null == request.getHeader("Refresh-Token")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
                     "로그인이 필요합니다.");
@@ -108,7 +117,7 @@ public class CommentService {
         if (null == member) {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
-        Comment comment =commentRepository.findById(id)
+       Comment comment =isPresentComment(id);
         commentRepository.delete(comment);
         return ResponseDto.success(null);
     }

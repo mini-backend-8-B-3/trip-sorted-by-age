@@ -1,5 +1,6 @@
-package com.hanghae.minipj;
+package com.hanghae.minipj.repository;
 
+import com.hanghae.minipj.Card;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

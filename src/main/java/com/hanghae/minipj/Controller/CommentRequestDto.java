@@ -1,4 +1,4 @@
-package com.hanghae.minipj;
+package com.hanghae.minipj.Controller;
 
 import lombok.Getter;
 

@@ -1,5 +1,6 @@
 package com.hanghae.minipj;
 
+import com.hanghae.minipj.Controller.CommentRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

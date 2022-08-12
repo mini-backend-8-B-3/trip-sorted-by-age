@@ -1,5 +1,6 @@
 package com.hanghae.minipj;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +14,12 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/api/auth/comments")
-    public ResponseDto<?> createComments(@RequestBody CommentRequestDto requestDto,
+    public ResponseDto<?> createComment(@RequestBody CommentRequestDto requestDto,
                                          HttpServletRequest request){
-        return commentService.createComments(request,requestDto);
+        return commentService.createComment(request,requestDto);
+    }
+    @GetMapping("/api/comments")
+    public ResponseDto<?>getComments(){
+        return commentService.getComments();
     }
 }

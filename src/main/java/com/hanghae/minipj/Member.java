@@ -15,6 +15,8 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nickname;
+
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Comment comment;
 }

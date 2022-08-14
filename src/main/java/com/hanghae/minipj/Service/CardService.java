@@ -1,27 +1,21 @@
-package com.hanghae.minipj.service;
+package com.hanghae.minipj.Service;
 
 
-
-
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-
+import com.hanghae.minipj.Member;
+import com.hanghae.minipj.ResponseDto;
 import com.hanghae.minipj.domain.Card;
-import com.hanghae.minipj.domain.Member;
 import com.hanghae.minipj.dto.CardRequestDto;
-import com.hanghae.minipj.jwt.TokenProvider;
 import com.hanghae.minipj.repository.CardRepository;
 import com.hanghae.minipj.repository.CommentRepository;
 import com.hanghae.minipj.response.CardResponseDto;
-import com.hanghae.minipj.response.CommentResponseDto;
-import com.hanghae.minipj.response.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -114,16 +108,13 @@ public class CardService {
 
         return ResponseDto.success(
                 CardResponseDto.builder()
-                        .id(post.getId())
-                        .title(post.getTitle())
-                        .content(post.getContent())
-                        .commentResponseDtoList(commentResponseDtoList)
-                        .author(post.getMember().getNickname())
-                        .imgUrl(post.getImgUrl())
-                        .likesCount(likeRepository.countByPostId(post.getId()))
-                        .commentsCount(commentRepository.countByPostId(post.getId()))
-                        .createdAt(post.getCreatedAt())
-                        .modifiedAt(post.getModifiedAt())
+                        .id(card.getId())
+                        .title(card.getTitle())
+                        .content(card.getContent())
+                        .nickname(card.getMember().getNickname())
+                        .imgUrl(card.getImgUrl())
+                        .createdAt(card.getCreatedAt())
+                        .modifiedAt(card.getModifiedAt())
                         .build()
         );
     }
@@ -138,12 +129,15 @@ public class CardService {
                     CardResponseDto.builder()
                             .id(card.getId())
                             .title(card.getTitle())
-                            .nickname(card.getMember().getNickname())
                             .content(card.getContent())
                             .imgUrl(card.getImgUrl())
+                            .nickname(card.getMember().getNickname())
+                            .star(card.getStar())
+                            .place(card.getPlace())
                             .createdAt(card.getCreatedAt())
                             .modifiedAt(card.getModifiedAt())
                             .build()
+
             );
         }
 
@@ -207,28 +201,24 @@ public class CardService {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
 
-        Post post = isPresentPost(id);
-        if (null == post) {
+        Card card = isPresentCard(id);
+        if (null == card) {
             return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
         }
 
-        if (post.validateMember(member)) {
+        if (card.validateMember(member)) {
             return ResponseDto.fail("BAD_REQUEST", "작성자만 삭제할 수 있습니다.");
         }
 
-        postRepository.delete(post);
+        cardRepository.delete(card);
         return ResponseDto.success("delete success");
     }
 
-    @Transactional
-    public void deleteNoCommentPost(Long id) {
-        postRepository.deleteById(id);
-    }
 
     @Transactional(readOnly = true)
-    public Post isPresentPost(Long id) {
-        Optional<Post> optionalPost = postRepository.findById(id);
-        return optionalPost.orElse(null);
+    public Card isPresentCard(Long id) {
+        Optional<Card> optionalCard = cardRepository.findById(id);
+        return optionalCard.orElse(null);
     }
 
     @Transactional
@@ -239,5 +229,10 @@ public class CardService {
         return tokenProvider.getMemberFromAuthentication();
     }
 
+
+    public ResponseDto<?> getCardsByAges(String ages) {
+        List<Card> cardList = cardRepository.findAllByAgesOrderByCreatedAtDesc(ages);
+        return ResponseDto.success(cardList);
+    }
 }
 

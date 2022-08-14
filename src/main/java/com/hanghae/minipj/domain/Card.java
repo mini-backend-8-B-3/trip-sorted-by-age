@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.hanghae.minipj.Comment;
+import com.hanghae.minipj.Member;
+import com.hanghae.minipj.Timestamped;
 import com.hanghae.minipj.dto.CardRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,7 +54,7 @@ public class Card extends Timestamped {
     @Column
     private String imgUrl;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "card", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
     @JoinColumn(name = "member_id", nullable = false)

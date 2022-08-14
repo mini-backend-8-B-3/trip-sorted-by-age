@@ -8,7 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CardRepository extends JpaRepository<Card, Long> {
     List<Card> findAllByOrderByModifiedAtDesc();
-    List<Card> findAllByMemberId(Long memberId);
-
-
+    Optional<Card> findById(Long id);
 }

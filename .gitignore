@@ -4,8 +4,12 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+<<<<<<< HEAD
 **/src/main/resources/application.properties
 **/src/main/resources/application-s3.properties
+=======
+**/src/resources/application.properties
+>>>>>>> signup
 
 ### STS ###
 .apt_generated

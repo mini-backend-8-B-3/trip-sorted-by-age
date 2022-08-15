@@ -1,12 +1,12 @@
 package com.hanghae.minipj.Service;
 
 
-import com.hanghae.minipj.Comment;
-import com.hanghae.minipj.dto.request.CommentRequestDto;
 import com.hanghae.minipj.Controller.CommentResponseDto;
 import com.hanghae.minipj.domain.Card;
+import com.hanghae.minipj.domain.Comment;
 import com.hanghae.minipj.domain.Member;
 import com.hanghae.minipj.dto.ResponseDto;
+import com.hanghae.minipj.dto.request.CommentRequestDto;
 import com.hanghae.minipj.jwt.TokenProvider;
 import com.hanghae.minipj.repository.CardRepository;
 import com.hanghae.minipj.repository.CommentRepository;

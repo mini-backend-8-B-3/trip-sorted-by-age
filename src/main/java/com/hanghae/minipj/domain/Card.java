@@ -1,7 +1,6 @@
 package com.hanghae.minipj.domain;
 
 
-import com.hanghae.minipj.Comment;
 import com.hanghae.minipj.dto.request.CardRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

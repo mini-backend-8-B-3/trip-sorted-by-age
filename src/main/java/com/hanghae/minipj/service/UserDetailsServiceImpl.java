@@ -1,4 +1,4 @@
-package com.hanghae.minipj.Service;
+package com.hanghae.minipj.service;
 
 import com.hanghae.minipj.domain.Member;
 import com.hanghae.minipj.domain.UserDetailsImpl;

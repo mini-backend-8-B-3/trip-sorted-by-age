@@ -1,7 +1,9 @@
-package com.hanghae.minipj.Service;
+package com.hanghae.minipj.service;
 
 
+import com.hanghae.minipj.dto.response.CommentResponseDto;
 import com.hanghae.minipj.domain.Card;
+import com.hanghae.minipj.domain.Comment;
 import com.hanghae.minipj.domain.Member;
 import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.dto.request.CardRequestDto;
@@ -48,7 +50,8 @@ public class CardService {
                 .content(requestDto.getContent())
                 .imgUrl(requestDto.getImgUrl())
                 .nickname(member.getNickname())
-                .ages(member.getNickname())
+                .place(requestDto.getPlace())
+                .ages(member.getAge())
                 .member(member)
                 .build();
         cardRepository.save(card);
@@ -74,50 +77,34 @@ public class CardService {
             return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
         }
 
-//        List<Comment> commentList = commentRepository.findAllByPost(post);
-//        List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
-//
-//        for (Comment comment : commentList) {
-//            List<SubComment> subCommentList = subCommentRepository.findAllByComment(comment);
-//            List<SubCommentResponseDto> subCommentResponseDtoList = new ArrayList<>();
-//
-//            for (SubComment subComment : subCommentList) {
-//                subCommentResponseDtoList.add(
-//                        SubCommentResponseDto.builder()
-//                                .id(subComment.getId())
-//                                .author(subComment.getMember().getNickname())
-//                                .content(subComment.getContent())
-//                                .likesCount(likeRepository.countBySubCommentId(subComment.getId()))
-//                                .createdAt(subComment.getCreatedAt())
-//                                .modifiedAt(subComment.getModifiedAt())
-//                                .build()
-//                );
-//            }
-//
-//            commentResponseDtoList.add(
-//                    CommentResponseDto.builder()
-//                            .id(comment.getId())
-//                            .author(comment.getMember().getNickname())
-//                            .content(comment.getContent())
-//                            .likesCount(likeRepository.countByCommentId(comment.getId()))
-//                            .subCommentResponseDtoList(subCommentResponseDtoList)
-//                            .createdAt(comment.getCreatedAt())
-//                            .modifiedAt(comment.getModifiedAt())
-//                            .build()
-//            );
-//        }
+        List<Comment> commentList = commentRepository.findAllByCard(card);
+        List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
 
-        return ResponseDto.success(
+        for (Comment comment : commentList) {
+            commentResponseDtoList.add(
+                    CommentResponseDto.builder()
+                            .id(comment.getId())
+                            .nickname(comment.getMember().getNickname())
+                            .content(comment.getContent())
+                            .createdAt(comment.getCreatedAt())
+                            .build()
+            );
+        }
+        List<CardResponseDto> cardList = new ArrayList<>();
+        cardList.add(
                 CardResponseDto.builder()
                         .id(card.getId())
                         .title(card.getTitle())
                         .content(card.getContent())
                         .nickname(card.getMember().getNickname())
                         .imgUrl(card.getImgUrl())
+                        .commentResponseDtoList(commentResponseDtoList)
                         .createdAt(card.getCreatedAt())
                         .modifiedAt(card.getModifiedAt())
                         .build()
         );
+        return ResponseDto.success(cardList);
+
     }
 
     @Transactional(readOnly = true)

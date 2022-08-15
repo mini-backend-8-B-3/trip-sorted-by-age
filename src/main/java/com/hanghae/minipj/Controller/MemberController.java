@@ -1,11 +1,11 @@
-package com.hanghae.minipj.controller;
+package com.hanghae.minipj.Controller;
 
+
+import com.hanghae.minipj.Service.MemberService;
+import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.dto.request.LoginRequestDto;
 import com.hanghae.minipj.dto.request.MemberRequestDto;
-import com.hanghae.minipj.dto.response.ResponseDto;
-import com.hanghae.minipj.service.MemberService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

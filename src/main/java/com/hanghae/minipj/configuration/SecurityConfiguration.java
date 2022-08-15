@@ -1,11 +1,11 @@
 package com.hanghae.minipj.configuration;
 
+import com.hanghae.minipj.Service.UserDetailsServiceImpl;
 import com.hanghae.minipj.jwt.AccessDeniedHandlerException;
 import com.hanghae.minipj.jwt.AuthenticationEntryPointException;
 import com.hanghae.minipj.jwt.TokenProvider;
-import com.hanghae.minipj.service.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Value;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.security.ConditionalOnDefaultWebSecurity;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;

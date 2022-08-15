@@ -1,12 +1,13 @@
 package com.hanghae.minipj.Service;
 
 
-import com.hanghae.minipj.Card;
 import com.hanghae.minipj.Comment;
-import com.hanghae.minipj.Controller.CommentRequestDto;
+import com.hanghae.minipj.dto.request.CommentRequestDto;
 import com.hanghae.minipj.Controller.CommentResponseDto;
-import com.hanghae.minipj.Member;
-import com.hanghae.minipj.ResponseDto;
+import com.hanghae.minipj.domain.Card;
+import com.hanghae.minipj.domain.Member;
+import com.hanghae.minipj.dto.ResponseDto;
+import com.hanghae.minipj.jwt.TokenProvider;
 import com.hanghae.minipj.repository.CardRepository;
 import com.hanghae.minipj.repository.CommentRepository;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class CommentService {
 
     private CommentRepository commentRepository;
     private CardRepository cardRepository;
+
+    private TokenProvider tokenProvider;
 
     public ResponseDto<?> createComment(HttpServletRequest request, CommentRequestDto requestDto) {
         if (null == request.getHeader("Refresh-Token")) {

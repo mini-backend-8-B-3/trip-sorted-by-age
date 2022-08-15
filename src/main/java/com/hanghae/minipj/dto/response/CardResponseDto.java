@@ -1,7 +1,9 @@
-package com.hanghae.minipj.response;
+package com.hanghae.minipj.dto.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.hanghae.minipj.Controller.CommentResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -2,9 +2,10 @@ package com.hanghae.minipj.Service;
 
 
 import com.hanghae.minipj.File;
-import com.hanghae.minipj.Member;
-import com.hanghae.minipj.ResponseDto;
 import com.hanghae.minipj.S3.S3Uploader;
+import com.hanghae.minipj.domain.Member;
+import com.hanghae.minipj.dto.ResponseDto;
+import com.hanghae.minipj.jwt.TokenProvider;
 import com.hanghae.minipj.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

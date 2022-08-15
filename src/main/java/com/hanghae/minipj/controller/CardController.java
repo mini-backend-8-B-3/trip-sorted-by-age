@@ -1,9 +1,8 @@
 package com.hanghae.minipj.Controller;
 
 
-import com.hanghae.minipj.response.ResponseDto;
-import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.Service.CardService;
+import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.dto.request.CardRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

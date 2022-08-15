@@ -1,7 +1,6 @@
 package com.hanghae.minipj.Service;
 
 
-import com.hanghae.minipj.response.ResponseDto;
 import com.hanghae.minipj.domain.Card;
 import com.hanghae.minipj.domain.Member;
 import com.hanghae.minipj.dto.ResponseDto;

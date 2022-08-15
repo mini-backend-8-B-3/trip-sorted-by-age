@@ -1,9 +1,6 @@
 package com.hanghae.minipj.domain;
 
 import com.hanghae.minipj.dto.request.CommentRequestDto;
-import com.hanghae.minipj.domain.Card;
-import com.hanghae.minipj.domain.Member;
-import com.hanghae.minipj.domain.Timestamped;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,17 +21,16 @@ import static javax.persistence.FetchType.LAZY;
 
         @JoinColumn(name = "member_id", nullable = false)
         @ManyToOne(fetch = LAZY)
-        private com.hanghae.minipj.Member member;
+        private Member member;
 
         @JoinColumn(name = "card_id", nullable = false)
         @ManyToOne(fetch = LAZY)
-        private com.hanghae.minipj.Card card;
+        private Card card;
 
 
         @Column(nullable = false)
         private String content;
 
-        public Comment(String content, Card card, com.hanghae.minipj.Member member){
         public Comment(String content, Card card, Member member){
             this.id = getId();
             this.content=content;

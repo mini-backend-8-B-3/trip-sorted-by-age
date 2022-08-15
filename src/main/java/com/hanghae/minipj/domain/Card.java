@@ -14,10 +14,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.hanghae.minipj.dto.CardRequestDto;
+import com.hanghae.minipj.Comment;
+import com.hanghae.minipj.dto.request.CardRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Builder
 @Getter

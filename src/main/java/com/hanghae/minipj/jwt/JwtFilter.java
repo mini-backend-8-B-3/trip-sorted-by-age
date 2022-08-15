@@ -2,8 +2,8 @@ package com.hanghae.minipj.jwt;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hanghae.minipj.dto.response.ResponseDto;
-import com.hanghae.minipj.service.UserDetailsServiceImpl;
+import com.hanghae.minipj.Service.UserDetailsServiceImpl;
+import com.hanghae.minipj.dto.ResponseDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;

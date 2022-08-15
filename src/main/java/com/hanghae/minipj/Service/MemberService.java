@@ -1,11 +1,10 @@
-package com.hanghae.minipj.service;
+package com.hanghae.minipj.Service;
 
 import com.hanghae.minipj.domain.Member;
+import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.dto.request.LoginRequestDto;
 import com.hanghae.minipj.dto.request.MemberRequestDto;
 import com.hanghae.minipj.dto.request.TokenDto;
-import com.hanghae.minipj.dto.response.MemberResponseDto;
-import com.hanghae.minipj.dto.response.ResponseDto;
 import com.hanghae.minipj.jwt.TokenProvider;
 import com.hanghae.minipj.repository.MemberRepository;
 import lombok.AllArgsConstructor;

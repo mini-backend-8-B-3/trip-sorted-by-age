@@ -1,12 +1,12 @@
 package com.hanghae.minipj.jwt;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hanghae.minipj.dto.response.ResponseDto;
+import com.hanghae.minipj.dto.ResponseDto;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

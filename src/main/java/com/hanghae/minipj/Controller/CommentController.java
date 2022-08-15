@@ -1,7 +1,9 @@
 package com.hanghae.minipj.Controller;
 
 import com.hanghae.minipj.response.ResponseDto;
+import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.Service.CommentService;
+import com.hanghae.minipj.dto.request.CommentRequestDto;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;

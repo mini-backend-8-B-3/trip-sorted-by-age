@@ -3,10 +3,13 @@ package com.hanghae.minipj.Service;
 
 import com.hanghae.minipj.response.ResponseDto;
 import com.hanghae.minipj.domain.Card;
-import com.hanghae.minipj.dto.CardRequestDto;
+import com.hanghae.minipj.domain.Member;
+import com.hanghae.minipj.dto.ResponseDto;
+import com.hanghae.minipj.dto.request.CardRequestDto;
+import com.hanghae.minipj.dto.response.CardResponseDto;
+import com.hanghae.minipj.jwt.TokenProvider;
 import com.hanghae.minipj.repository.CardRepository;
 import com.hanghae.minipj.repository.CommentRepository;
-import com.hanghae.minipj.response.CardResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

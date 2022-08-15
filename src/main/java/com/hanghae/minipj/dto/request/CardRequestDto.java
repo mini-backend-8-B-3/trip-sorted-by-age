@@ -1,4 +1,4 @@
-package com.hanghae.minipj.dto;
+package com.hanghae.minipj.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

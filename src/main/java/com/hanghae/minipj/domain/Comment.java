@@ -1,6 +1,9 @@
 package com.hanghae.minipj.domain;
 
-import com.hanghae.minipj.Controller.CommentRequestDto;
+import com.hanghae.minipj.dto.request.CommentRequestDto;
+import com.hanghae.minipj.domain.Card;
+import com.hanghae.minipj.domain.Member;
+import com.hanghae.minipj.domain.Timestamped;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +35,7 @@ import static javax.persistence.FetchType.LAZY;
         private String content;
 
         public Comment(String content, Card card, com.hanghae.minipj.Member member){
+        public Comment(String content, Card card, Member member){
             this.id = getId();
             this.content=content;
             this.card =card;

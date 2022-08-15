@@ -53,6 +53,9 @@ public class Card extends Timestamped {
     public void update(CardRequestDto cardRequestDto) {
         this.title = cardRequestDto.getTitle();
         this.content = cardRequestDto.getContent();
+        this.imgUrl =cardRequestDto.getImgUrl();
+        this.place =cardRequestDto.getPlace();
+        this.star=cardRequestDto.getStar();
     }
 
     public boolean validateMember(Member member) {

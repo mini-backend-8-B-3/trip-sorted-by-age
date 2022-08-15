@@ -87,7 +87,8 @@ public class TokenProvider {
         return ((UserDetailsImpl) authentication.getPrincipal()).getMember();
     }
 
-    public boolean validateToken(String token) {
+    public boolean validateToken(String Authorization) {
+        String token= Authorization.substring(7);
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;

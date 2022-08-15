@@ -70,8 +70,8 @@ public class SecurityConfiguration {
                 .antMatchers("/api/cards/**").permitAll()
                 .antMatchers("/api/comments/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
-                .anyRequest().authenticated()
-
+                .antMatchers("/swagger-ui/**").permitAll()
+                .anyRequest().permitAll()
 
                 .and()
                 .apply(new JwtSecurityConfiguration(SECRET_KEY, tokenProvider, userDetailsService));

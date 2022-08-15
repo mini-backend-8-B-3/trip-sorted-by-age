@@ -10,7 +10,6 @@ import java.util.Objects;
 
 @Builder
 @Entity
-@Table(name = "member")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,8 +32,6 @@ public class Member extends Timestamped{
     @Column(nullable = false)
     @JsonIgnore
     private String password;
-
-
 
     @Override
     public boolean equals(Object o){

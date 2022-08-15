@@ -2,6 +2,7 @@ package com.hanghae.minipj.domain;
 
 import com.hanghae.minipj.dto.request.CommentRequestDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import static javax.persistence.FetchType.LAZY;
     @NoArgsConstructor
     @AllArgsConstructor
     @Entity
+    @Builder
     public class Comment extends Timestamped {
 
         @Id

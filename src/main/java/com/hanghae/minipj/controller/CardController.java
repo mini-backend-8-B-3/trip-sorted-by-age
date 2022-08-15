@@ -1,7 +1,7 @@
-package com.hanghae.minipj.Controller;
+package com.hanghae.minipj.controller;
 
 
-import com.hanghae.minipj.Service.CardService;
+import com.hanghae.minipj.service.CardService;
 import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.dto.request.CardRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -15,18 +15,18 @@ public class CardController {
 
     private final CardService cardService;
 
-    @PostMapping("/api/cards/posts")
+    @PostMapping("/api/auth/cards")
     public ResponseDto<?> createCard(@RequestBody CardRequestDto requestDto,
                                      HttpServletRequest request) {
         return cardService.createCard(requestDto, request);
     }
 
-    @GetMapping("/api/cards/{postId}")
+    @GetMapping("/api/cards/{cardId}")
     public ResponseDto<?> getCard(@PathVariable Long cardId) {
         return cardService.getCard(cardId);
     }
 
-    @GetMapping("/api/cards/posts")
+    @GetMapping("/api/cards")
     public ResponseDto<?> getAllCards() {
         return cardService.getAllCard();
     }
@@ -43,7 +43,7 @@ public class CardController {
         return cardService.deleteCard(cardId, request);
     }
 
-    @GetMapping("/api/cards/{ages}")
+    @GetMapping("/api/cards/menu/{ages}")
     public ResponseDto<?> getCardsByAges(@PathVariable String ages){
         return cardService.getCardsByAges(ages);
     }

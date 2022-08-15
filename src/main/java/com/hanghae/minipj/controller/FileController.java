@@ -1,6 +1,6 @@
-package com.hanghae.minipj.Controller;
+package com.hanghae.minipj.controller;
 
-import com.hanghae.minipj.Service.FileService;
+import com.hanghae.minipj.service.FileService;
 import com.hanghae.minipj.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

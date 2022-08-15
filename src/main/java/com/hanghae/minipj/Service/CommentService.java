@@ -1,12 +1,10 @@
 package com.hanghae.minipj.Service;
 
 
-import com.hanghae.minipj.Card;
-import com.hanghae.minipj.Comment;
+import com.hanghae.minipj.domain.Comment;
 import com.hanghae.minipj.Controller.CommentRequestDto;
 import com.hanghae.minipj.Controller.CommentResponseDto;
-import com.hanghae.minipj.Member;
-import com.hanghae.minipj.ResponseDto;
+import com.hanghae.minipj.response.ResponseDto;
 import com.hanghae.minipj.repository.CardRepository;
 import com.hanghae.minipj.repository.CommentRepository;
 import org.springframework.stereotype.Service;

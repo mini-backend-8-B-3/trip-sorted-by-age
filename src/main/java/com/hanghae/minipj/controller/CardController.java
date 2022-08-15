@@ -1,7 +1,7 @@
 package com.hanghae.minipj.Controller;
 
 
-import com.hanghae.minipj.ResponseDto;
+import com.hanghae.minipj.response.ResponseDto;
 import com.hanghae.minipj.Service.CardService;
 import com.hanghae.minipj.dto.CardRequestDto;
 import lombok.RequiredArgsConstructor;

@@ -13,9 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.hanghae.minipj.Comment;
-import com.hanghae.minipj.Member;
-import com.hanghae.minipj.Timestamped;
 import com.hanghae.minipj.dto.CardRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

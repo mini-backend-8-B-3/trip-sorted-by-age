@@ -1,4 +1,4 @@
-package com.hanghae.minipj;
+package com.hanghae.minipj.domain;
 
 import com.hanghae.minipj.Controller.CommentRequestDto;
 import lombok.AllArgsConstructor;
@@ -21,17 +21,17 @@ import static javax.persistence.FetchType.LAZY;
 
         @JoinColumn(name = "member_id", nullable = false)
         @ManyToOne(fetch = LAZY)
-        private Member member;
+        private com.hanghae.minipj.Member member;
 
         @JoinColumn(name = "card_id", nullable = false)
         @ManyToOne(fetch = LAZY)
-        private Card card;
+        private com.hanghae.minipj.Card card;
 
 
         @Column(nullable = false)
         private String content;
 
-        public Comment(String content, Card card,Member member){
+        public Comment(String content, Card card, com.hanghae.minipj.Member member){
             this.id = getId();
             this.content=content;
             this.card =card;

@@ -1,9 +1,8 @@
 package com.hanghae.minipj.Service;
 
 
-import com.hanghae.minipj.File;
-import com.hanghae.minipj.Member;
-import com.hanghae.minipj.ResponseDto;
+import com.hanghae.minipj.domain.File;
+import com.hanghae.minipj.response.ResponseDto;
 import com.hanghae.minipj.S3.S3Uploader;
 import com.hanghae.minipj.repository.FileRepository;
 import lombok.RequiredArgsConstructor;

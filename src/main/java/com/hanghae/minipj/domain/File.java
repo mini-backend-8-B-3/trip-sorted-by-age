@@ -1,4 +1,4 @@
-package com.hanghae.minipj;
+package com.hanghae.minipj.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

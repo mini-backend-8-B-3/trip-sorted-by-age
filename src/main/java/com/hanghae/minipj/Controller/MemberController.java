@@ -1,7 +1,7 @@
-package com.hanghae.minipj.controller;
+package com.hanghae.minipj.Controller;
 
 
-import com.hanghae.minipj.service.MemberService;
+import com.hanghae.minipj.Service.MemberService;
 import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.dto.request.LoginRequestDto;
 import com.hanghae.minipj.dto.request.MemberRequestDto;

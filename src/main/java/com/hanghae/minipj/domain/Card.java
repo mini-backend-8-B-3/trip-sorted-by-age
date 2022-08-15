@@ -49,8 +49,6 @@ public class Card extends Timestamped {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-//    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Like> likeList;
 
     public void update(CardRequestDto cardRequestDto) {
         this.title = cardRequestDto.getTitle();

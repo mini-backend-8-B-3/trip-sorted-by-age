@@ -1,6 +1,6 @@
-package com.hanghae.minipj.controller;
+package com.hanghae.minipj.Controller;
 
-import com.hanghae.minipj.service.CommentService;
+import com.hanghae.minipj.Service.CommentService;
 import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.dto.request.CommentRequestDto;
 import lombok.RequiredArgsConstructor;

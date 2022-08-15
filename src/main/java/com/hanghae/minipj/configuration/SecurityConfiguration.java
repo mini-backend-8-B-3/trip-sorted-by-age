@@ -1,6 +1,6 @@
 package com.hanghae.minipj.configuration;
 
-import com.hanghae.minipj.service.UserDetailsServiceImpl;
+import com.hanghae.minipj.Service.UserDetailsServiceImpl;
 import com.hanghae.minipj.jwt.AccessDeniedHandlerException;
 import com.hanghae.minipj.jwt.AuthenticationEntryPointException;
 import com.hanghae.minipj.jwt.TokenProvider;

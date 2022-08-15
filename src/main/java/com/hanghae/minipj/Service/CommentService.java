@@ -1,4 +1,4 @@
-package com.hanghae.minipj.service;
+package com.hanghae.minipj.Service;
 
 
 import com.hanghae.minipj.dto.response.CommentResponseDto;

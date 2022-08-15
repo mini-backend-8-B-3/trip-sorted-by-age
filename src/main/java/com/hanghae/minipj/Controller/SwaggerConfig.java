@@ -1,5 +1,5 @@
 
-package com.hanghae.minipj.controller;
+package com.hanghae.minipj.Controller;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.OAS_30)
                 .useDefaultResponseMessages(false)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com/hanghae/minipj/controller"))
+                .apis(RequestHandlerSelectors.basePackage("com/hanghae/minipj/Controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());

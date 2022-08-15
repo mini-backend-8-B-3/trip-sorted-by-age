@@ -1,4 +1,4 @@
-package com.hanghae.minipj.service;
+package com.hanghae.minipj.Service;
 
 
 import com.hanghae.minipj.S3.S3Uploader;
@@ -43,9 +43,7 @@ public class FileService {
         }
         String imageUrl = s3Uploader.uploadFiles(multifile,"static");
 
-        File file = File.builder()
-                .url(imageUrl)
-                .build();
+        File file=new File(imageUrl);
         fileRepository.save(file);
 
         return ResponseDto.success(imageUrl);

@@ -1,17 +1,21 @@
-package com.hanghae.minipj.Controller;
+package com.hanghae.minipj.controller;
 
+import com.hanghae.minipj.service.CommentService;
 import com.hanghae.minipj.dto.ResponseDto;
-import com.hanghae.minipj.Service.CommentService;
 import com.hanghae.minipj.dto.request.CommentRequestDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
+@Validated
+@RequiredArgsConstructor
 public class CommentController {
 
-    private CommentService commentService;
+    private final CommentService commentService;
 
     @PostMapping("/api/auth/comments")
     public ResponseDto<?> createComment(@RequestBody CommentRequestDto requestDto,

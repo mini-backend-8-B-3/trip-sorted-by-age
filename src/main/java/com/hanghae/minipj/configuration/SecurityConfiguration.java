@@ -1,6 +1,6 @@
 package com.hanghae.minipj.configuration;
 
-import com.hanghae.minipj.Service.UserDetailsServiceImpl;
+import com.hanghae.minipj.service.UserDetailsServiceImpl;
 import com.hanghae.minipj.jwt.AccessDeniedHandlerException;
 import com.hanghae.minipj.jwt.AuthenticationEntryPointException;
 import com.hanghae.minipj.jwt.TokenProvider;
@@ -67,8 +67,8 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/member/**").permitAll()
-                .antMatchers("/api/post/**").permitAll()
-                .antMatchers("/api/comment/**").permitAll()
+                .antMatchers("/api/cards/**").permitAll()
+                .antMatchers("/api/comments/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
 

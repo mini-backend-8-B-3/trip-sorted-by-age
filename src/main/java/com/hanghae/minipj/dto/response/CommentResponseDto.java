@@ -1,4 +1,4 @@
-package com.hanghae.minipj.Controller;
+package com.hanghae.minipj.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;

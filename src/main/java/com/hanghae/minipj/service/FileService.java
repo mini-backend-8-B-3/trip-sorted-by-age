@@ -1,8 +1,8 @@
-package com.hanghae.minipj.Service;
+package com.hanghae.minipj.service;
 
 
-import com.hanghae.minipj.File;
 import com.hanghae.minipj.S3.S3Uploader;
+import com.hanghae.minipj.domain.File;
 import com.hanghae.minipj.domain.Member;
 import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.jwt.TokenProvider;

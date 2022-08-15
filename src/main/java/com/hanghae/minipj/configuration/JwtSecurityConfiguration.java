@@ -1,6 +1,6 @@
 package com.hanghae.minipj.configuration;
 
-import com.hanghae.minipj.Service.UserDetailsServiceImpl;
+import com.hanghae.minipj.service.UserDetailsServiceImpl;
 import com.hanghae.minipj.jwt.JwtFilter;
 import com.hanghae.minipj.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;

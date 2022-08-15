@@ -1,4 +1,4 @@
-package com.hanghae.minipj.Service;
+package com.hanghae.minipj.service;
 
 
 import com.hanghae.minipj.S3.S3Uploader;

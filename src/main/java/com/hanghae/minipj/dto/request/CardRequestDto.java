@@ -13,5 +13,4 @@ public class CardRequestDto {
     private String imgUrl;
     private int star;
     private String place;
-    private String ages;
 }

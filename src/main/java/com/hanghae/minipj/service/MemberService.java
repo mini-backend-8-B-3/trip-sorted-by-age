@@ -1,4 +1,4 @@
-package com.hanghae.minipj.Service;
+package com.hanghae.minipj.service;
 
 import com.hanghae.minipj.domain.Member;
 import com.hanghae.minipj.dto.ResponseDto;
@@ -7,7 +7,7 @@ import com.hanghae.minipj.dto.request.MemberRequestDto;
 import com.hanghae.minipj.dto.request.TokenDto;
 import com.hanghae.minipj.jwt.TokenProvider;
 import com.hanghae.minipj.repository.MemberRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MemberService {
 
     private final MemberRepository memberRepository;

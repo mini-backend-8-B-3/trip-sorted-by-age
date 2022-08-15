@@ -23,15 +23,31 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.3'
+    implementation 'com.amazonaws:aws-java-sdk-s3'
+    compileOnly 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+
+<<<<<<< HEAD
+=======
+    //     JWT
+    compileOnly group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
+
+    //S3
+    implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.3.1'
+
+>>>>>>> signup
+
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+

@@ -150,7 +150,7 @@ public class CommentService {
         if(card == null){
             ResponseDto.fail("CARD_NOT_FOUND", "해당 게시물이 존재하지 않습니다.");
         }
-        Comment comment = new Comment(requestDto.getContent(), card, member,id);
+        Comment comment = new Comment(requestDto.getContent(), card, member);
         commentRepository.save(comment);
         return ResponseDto.success(null);
     }

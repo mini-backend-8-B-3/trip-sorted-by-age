@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.FetchType.LAZY;
 
     @Getter
@@ -30,7 +32,9 @@ import static javax.persistence.FetchType.LAZY;
         private Card card;
 
         @Column
-        private Long parentId;
+        @ManyToOne(fetch = LAZY)
+        private Comment comment;
+        //일대다 Comment ??필요한 부분만
 
         @Column(nullable = false)
         private String content;
@@ -40,16 +44,14 @@ import static javax.persistence.FetchType.LAZY;
             this.content=content;
             this.card =card;
             this.member =member;
-            this.parentId =null;
-            //this.parentId=0L
         }
 
-        public Comment(String content, Card card, Member member, Long parentId){
+        public Comment(String content, Card card, Member member, Comment comment){
             this.id = getId();
             this.content=content;
             this.card =card;
             this.member =member;
-            this.parentId =parentId;
+            this.comment =comment;
         }
 
         public void update(CommentRequestDto commentRequestDto) {

@@ -52,7 +52,6 @@ public class SecurityConfiguration {
         http.cors();
 
         http.csrf().disable()
-
                 .exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPointException)
                 .accessDeniedHandler(accessDeniedHandlerException)
@@ -67,10 +66,10 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeRequests()
 
-//                .antMatchers("/api/member/**").permitAll()
-//                .antMatchers("/api/cards/**").permitAll()
-//                .antMatchers("/api/comments/**").permitAll()
-//                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/users/**").permitAll()
+                .antMatchers("/api/cards/**").permitAll()
+                .antMatchers("/api/comments/**").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
 

@@ -19,6 +19,7 @@ public class CardResponseDto {
     private String nickname;
     private String imgUrl;
     private int star;
+    private String ages;
     private String place;
     private LocalDateTime createdAt;
     private List<CommentResponseDto> commentResponseDtoList;

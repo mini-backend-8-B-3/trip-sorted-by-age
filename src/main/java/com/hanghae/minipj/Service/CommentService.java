@@ -109,10 +109,7 @@ public class CommentService {
     }
 
     public ResponseDto<?> deleteComment(Long id,HttpServletRequest request){
-//        if (null == request.getHeader("Refresh-Token")) {
-//            return ResponseDto.fail("MEMBER_NOT_FOUND",
-//                    "로그인이 필요합니다.");
-//        }
+
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
                     "로그인이 필요합니다.");

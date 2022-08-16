@@ -30,10 +30,10 @@ public class CardService {
 
     @Transactional
     public ResponseDto<?> createCard(CardRequestDto requestDto, HttpServletRequest request) {
-        if (null == request.getHeader("Refresh-Token")) {
-            return ResponseDto.fail("MEMBER_NOT_FOUND",
-                    "로그인이 필요합니다.");
-        }
+//        if (null == request.getHeader("Refresh-Token")) {
+//            return ResponseDto.fail("MEMBER_NOT_FOUND",
+//                    "로그인이 필요합니다.");
+//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -97,6 +97,7 @@ public class CardService {
                         .title(card.getTitle())
                         .content(card.getContent())
                         .nickname(card.getMember().getNickname())
+                        .place(card.getPlace())
                         .imgUrl(card.getImgUrl())
                         .commentResponseDtoList(commentResponseDtoList)
                         .createdAt(card.getCreatedAt())
@@ -134,10 +135,10 @@ public class CardService {
 
     @Transactional
     public ResponseDto<?> updateCard(Long id, CardRequestDto requestDto, HttpServletRequest request) {
-        if (null == request.getHeader("Refresh-Token")) {
-            return ResponseDto.fail("MEMBER_NOT_FOUND",
-                    "로그인이 필요합니다.");
-        }
+//        if (null == request.getHeader("Refresh-Token")) {
+//            return ResponseDto.fail("MEMBER_NOT_FOUND",
+//                    "로그인이 필요합니다.");
+//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -165,6 +166,7 @@ public class CardService {
                         .nickname(card.getMember().getNickname())
                         .title(card.getTitle())
                         .content(card.getContent())
+                        .place(card.getPlace())
                         .imgUrl(card.getImgUrl())
                         .createdAt(card.getCreatedAt())
                         .modifiedAt(card.getModifiedAt())
@@ -174,10 +176,10 @@ public class CardService {
 
     @Transactional
     public ResponseDto<?> deleteCard(Long id, HttpServletRequest request) {
-        if (null == request.getHeader("Refresh-Token")) {
-            return ResponseDto.fail("MEMBER_NOT_FOUND",
-                    "로그인이 필요합니다.");
-        }
+//        if (null == request.getHeader("Refresh-Token")) {
+//            return ResponseDto.fail("MEMBER_NOT_FOUND",
+//                    "로그인이 필요합니다.");
+//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -211,7 +213,7 @@ public class CardService {
 
     @Transactional
     public Member validateMember(HttpServletRequest request) {
-        if (!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
+        if (!tokenProvider.validateToken(request.getHeader("Authorization").substring(7))) {
             return null;
         }
         return tokenProvider.getMemberFromAuthentication();

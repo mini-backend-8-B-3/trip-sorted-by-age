@@ -28,10 +28,10 @@ public class CommentService {
     private final TokenProvider tokenProvider;
 
     public ResponseDto<?> createComment(HttpServletRequest request, CommentRequestDto requestDto) {
-        if (null == request.getHeader("Refresh-Token")) {
-            return ResponseDto.fail("MEMBER_NOT_FOUND",
-                    "로그인이 필요합니다.");
-        }
+//        if (null == request.getHeader("Refresh-Token")) {
+//            return ResponseDto.fail("MEMBER_NOT_FOUND",
+//                    "로그인이 필요합니다.");
+//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -69,10 +69,10 @@ public class CommentService {
     }
 
     public ResponseDto<?> updateComment(Long id, HttpServletRequest request, CommentRequestDto requestDto){
-        if (null == request.getHeader("Refresh-Token")) {
-            return ResponseDto.fail("MEMBER_NOT_FOUND",
-                    "로그인이 필요합니다.");
-        }
+//        if (null == request.getHeader("Refresh-Token")) {
+//            return ResponseDto.fail("MEMBER_NOT_FOUND",
+//                    "로그인이 필요합니다.");
+//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -109,10 +109,10 @@ public class CommentService {
     }
 
     public ResponseDto<?> deleteComment(Long id,HttpServletRequest request){
-        if (null == request.getHeader("Refresh-Token")) {
-            return ResponseDto.fail("MEMBER_NOT_FOUND",
-                    "로그인이 필요합니다.");
-        }
+//        if (null == request.getHeader("Refresh-Token")) {
+//            return ResponseDto.fail("MEMBER_NOT_FOUND",
+//                    "로그인이 필요합니다.");
+//        }
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
                     "로그인이 필요합니다.");
@@ -139,7 +139,7 @@ public class CommentService {
 
     @Transactional
     public Member validateMember(HttpServletRequest request) {
-        if (!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
+        if (!tokenProvider.validateToken(request.getHeader("Authorization").substring(7))) {
             return null;
         }
         return tokenProvider.getMemberFromAuthentication();

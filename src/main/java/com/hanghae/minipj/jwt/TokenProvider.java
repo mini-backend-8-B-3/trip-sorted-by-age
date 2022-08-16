@@ -1,13 +1,11 @@
 package com.hanghae.minipj.jwt;
 
 
-import com.hanghae.minipj.domain.AccessToken;
 import com.hanghae.minipj.domain.Member;
 import com.hanghae.minipj.domain.RefreshToken;
 import com.hanghae.minipj.domain.UserDetailsImpl;
 import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.dto.request.TokenDto;
-import com.hanghae.minipj.repository.AccessTokenRepository;
 import com.hanghae.minipj.shared.Authority;
 import io.jsonwebtoken.*;
 import com.hanghae.minipj.repository.RefreshTokenRepository;
@@ -22,7 +20,6 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Access;
 import java.security.Key;
 import java.util.Date;
 import java.util.Optional;

@@ -51,6 +51,7 @@ public class CardService {
                 .imgUrl(requestDto.getImgUrl())
                 .nickname(member.getNickname())
                 .place(requestDto.getPlace())
+                .star(requestDto.getStar())
                 .ages(member.getAge())
                 .member(member)
                 .build();
@@ -65,7 +66,6 @@ public class CardService {
                         .star(card.getStar())
                         .place(card.getPlace())
                         .createdAt(card.getCreatedAt())
-                        .modifiedAt(card.getModifiedAt())
                         .build()
         );
     }
@@ -98,10 +98,10 @@ public class CardService {
                         .content(card.getContent())
                         .nickname(card.getMember().getNickname())
                         .place(card.getPlace())
+                        .star(card.getStar())
                         .imgUrl(card.getImgUrl())
                         .commentResponseDtoList(commentResponseDtoList)
                         .createdAt(card.getCreatedAt())
-                        .modifiedAt(card.getModifiedAt())
                         .build()
         );
         return ResponseDto.success(cardList);
@@ -124,7 +124,6 @@ public class CardService {
                             .star(card.getStar())
                             .place(card.getPlace())
                             .createdAt(card.getCreatedAt())
-                            .modifiedAt(card.getModifiedAt())
                             .build()
 
             );
@@ -166,10 +165,10 @@ public class CardService {
                         .nickname(card.getMember().getNickname())
                         .title(card.getTitle())
                         .content(card.getContent())
+                        .star(card.getStar())
                         .place(card.getPlace())
                         .imgUrl(card.getImgUrl())
                         .createdAt(card.getCreatedAt())
-                        .modifiedAt(card.getModifiedAt())
                         .build()
         );
     }

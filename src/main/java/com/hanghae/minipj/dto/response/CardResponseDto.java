@@ -21,6 +21,5 @@ public class CardResponseDto {
     private int star;
     private String place;
     private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
     private List<CommentResponseDto> commentResponseDtoList;
 }

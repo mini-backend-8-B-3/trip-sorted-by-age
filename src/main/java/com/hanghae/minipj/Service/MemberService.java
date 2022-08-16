@@ -88,6 +88,14 @@ public class MemberService {
         return optionalMember.orElse(null);
     }
 
+    @Transactional(readOnly = true)
+    public ResponseDto<?> isNickCheck(MemberRequestDto requestDto){
+        if (null != isPresentMember(requestDto.getNickname())) {
+            return ResponseDto.fail("DUPLICATED_NICKNAME", "중복된 닉네임 입니다.");
+        }
+        return ResponseDto.success("NICK_CHECK_SUCCESS");
+    }
+
     public void tokenToHeaders(TokenDto tokenDto, HttpServletResponse response) {
         response.addHeader("Authorization", "Bearer " + tokenDto.getAccessToken());
         response.addHeader("Refresh-Token", tokenDto.getRefreshToken());

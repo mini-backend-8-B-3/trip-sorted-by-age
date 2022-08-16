@@ -70,7 +70,7 @@ public class MemberService {
 
     @Transactional
     public ResponseDto<?> logout(HttpServletRequest request) {
-        if (!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
+        if (!tokenProvider.validateToken(request.getHeader("Authorization").substring(7))) {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
         Member member = tokenProvider.getMemberFromAuthentication();

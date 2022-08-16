@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 @RequiredArgsConstructor
 @RestController
 public class CardController {
@@ -48,9 +49,6 @@ public class CardController {
         return cardService.getCardsByAges(ages);
     }
 //MultipartHttpServletRequest
-
-
-
 
 }
 

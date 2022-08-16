@@ -38,7 +38,7 @@ public class MemberController {
     }
 
 
-    @RequestMapping(value = "/api/member/nickcheck",method = RequestMethod.POST)
+    @RequestMapping(value = "/users/nickcheck",method = RequestMethod.POST)
     public ResponseDto<?> nickcheck(@RequestBody MemberRequestDto requestDto){
         return memberService.isNickCheck(requestDto);
     }

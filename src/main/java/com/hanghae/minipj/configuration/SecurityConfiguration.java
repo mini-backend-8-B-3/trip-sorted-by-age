@@ -66,12 +66,15 @@ public class SecurityConfiguration {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/member/**").permitAll()
-                .antMatchers("/api/cards/**").permitAll()
-                .antMatchers("/api/comments/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/swagger-ui/**").permitAll()
-                .anyRequest().permitAll()
+
+//                .antMatchers("/api/member/**").permitAll()
+//                .antMatchers("/api/cards/**").permitAll()
+//                .antMatchers("/api/comments/**").permitAll()
+//                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/**").permitAll()
+                .anyRequest().authenticated()
+
+
 
                 .and()
                 .apply(new JwtSecurityConfiguration(SECRET_KEY, tokenProvider, userDetailsService));

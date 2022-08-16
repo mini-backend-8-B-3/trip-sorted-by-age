@@ -2,6 +2,7 @@ package com.hanghae.minipj.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
@@ -17,7 +18,6 @@ public class ResponseDto<T> {
     public static <T> ResponseDto<T> fail(String code, String message) {
         return new ResponseDto<>(false, null, new Error(code, message));
     }
-
     @Getter
     @AllArgsConstructor
     static class Error {

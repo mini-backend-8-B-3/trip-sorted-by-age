@@ -29,6 +29,8 @@ import static javax.persistence.FetchType.LAZY;
         @ManyToOne(fetch = LAZY)
         private Card card;
 
+        @Column
+        private Long parentId;
 
         @Column(nullable = false)
         private String content;
@@ -38,7 +40,16 @@ import static javax.persistence.FetchType.LAZY;
             this.content=content;
             this.card =card;
             this.member =member;
+            this.parentId =null;
+            //this.parentId=0L
+        }
 
+        public Comment(String content, Card card, Member member, Long parentId){
+            this.id = getId();
+            this.content=content;
+            this.card =card;
+            this.member =member;
+            this.parentId =parentId;
         }
 
         public void update(CommentRequestDto commentRequestDto) {

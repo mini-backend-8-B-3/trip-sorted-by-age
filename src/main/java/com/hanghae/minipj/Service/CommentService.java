@@ -28,10 +28,6 @@ public class CommentService {
     private final TokenProvider tokenProvider;
 
     public ResponseDto<?> createComment(HttpServletRequest request, CommentRequestDto requestDto) {
-//        if (null == request.getHeader("Refresh-Token")) {
-//            return ResponseDto.fail("MEMBER_NOT_FOUND",
-//                    "로그인이 필요합니다.");
-//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -69,10 +65,6 @@ public class CommentService {
     }
 
     public ResponseDto<?> updateComment(Long id, HttpServletRequest request, CommentRequestDto requestDto){
-//        if (null == request.getHeader("Refresh-Token")) {
-//            return ResponseDto.fail("MEMBER_NOT_FOUND",
-//                    "로그인이 필요합니다.");
-//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -109,10 +101,7 @@ public class CommentService {
     }
 
     public ResponseDto<?> deleteComment(Long id,HttpServletRequest request){
-//        if (null == request.getHeader("Refresh-Token")) {
-//            return ResponseDto.fail("MEMBER_NOT_FOUND",
-//                    "로그인이 필요합니다.");
-//        }
+
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
                     "로그인이 필요합니다.");
@@ -143,5 +132,41 @@ public class CommentService {
             return null;
         }
         return tokenProvider.getMemberFromAuthentication();
+    }
+
+    public ResponseDto<?> createReComment(HttpServletRequest request, CommentRequestDto requestDto, Long id) {
+        if (null == request.getHeader("Authorization")) {
+            return ResponseDto.fail("MEMBER_NOT_FOUND",
+                    "로그인이 필요합니다.");
+        }
+        Member member = validateMember(request);
+        if (null == member) {
+            return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
+        }
+        if (requestDto.getContent() == null) {
+            ResponseDto.fail("CONTENT_EMPTY", "작성 칸이 비었습니다.");
+        }
+        Card card = isPresentCard(requestDto.getCardId());
+        if(card == null){
+            ResponseDto.fail("CARD_NOT_FOUND", "해당 게시물이 존재하지 않습니다.");
+        }
+        Comment comment = new Comment(requestDto.getContent(), card, member,id);
+        commentRepository.save(comment);
+        return ResponseDto.success(null);
+    }
+
+    public ResponseDto<?> getReComments(Long id) {
+        List<CommentResponseDto> reCommentList = new ArrayList<>();
+        List<Comment> commentList = commentRepository.findAllByParentIdOrderByCreatedAtDesc(id);
+        for (Comment comment : commentList) {
+            reCommentList.add(
+                    CommentResponseDto.builder()
+                            .content(comment.getContent())
+                            .nickname(comment.getMember().getNickname())
+                            .createdAt(comment.getCreatedAt())
+                            .build()
+            );
+        }
+        return ResponseDto.success(reCommentList);
     }
 }

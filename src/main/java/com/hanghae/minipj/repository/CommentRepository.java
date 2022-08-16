@@ -14,4 +14,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findAllBy();
 
     List<Comment> findAllByCard(Card card);
+
+    List<Comment> findAllByParentIdOrderByCreatedAtDesc(Long id);
 }

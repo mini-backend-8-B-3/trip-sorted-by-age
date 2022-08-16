@@ -134,10 +134,6 @@ public class CardService {
 
     @Transactional
     public ResponseDto<?> updateCard(Long id, CardRequestDto requestDto, HttpServletRequest request) {
-//        if (null == request.getHeader("Refresh-Token")) {
-//            return ResponseDto.fail("MEMBER_NOT_FOUND",
-//                    "로그인이 필요합니다.");
-//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -175,10 +171,6 @@ public class CardService {
 
     @Transactional
     public ResponseDto<?> deleteCard(Long id, HttpServletRequest request) {
-//        if (null == request.getHeader("Refresh-Token")) {
-//            return ResponseDto.fail("MEMBER_NOT_FOUND",
-//                    "로그인이 필요합니다.");
-//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",

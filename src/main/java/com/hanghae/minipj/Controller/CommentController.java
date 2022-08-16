@@ -26,7 +26,15 @@ public class CommentController {
     public ResponseDto<?>getComments(){
         return commentService.getComments();
     }
-
+    @PostMapping("/api/auth/comments/{id}/re-comments")
+    public ResponseDto<?> createReComment(@PathVariable Long id, @RequestBody CommentRequestDto requestDto,
+                                        HttpServletRequest request){
+        return commentService.createReComment(request,requestDto, id);
+    }
+    @GetMapping("/api/comments/{id}/re-comments")
+    public ResponseDto<?>getReComments(@PathVariable Long id){
+        return commentService.getReComments(id);
+    }
     @PutMapping("/api/auth/comments/{id}")
     public ResponseDto<?> updateComment(@RequestBody CommentRequestDto requestDto, HttpServletRequest request, @PathVariable Long id){
         return commentService.updateComment(id, request,requestDto);

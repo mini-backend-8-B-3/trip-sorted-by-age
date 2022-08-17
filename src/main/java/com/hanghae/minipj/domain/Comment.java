@@ -34,11 +34,10 @@ import static javax.persistence.FetchType.LAZY;
         private String content;
 
         public Comment(String content, Card card, Member member){
-            this.id = getId();
+            System.out.println(content+"  " + card.getAges()+"  "+ member.getNickname());
             this.content=content;
             this.card =card;
             this.member =member;
-
         }
 
         public void update(CommentRequestDto commentRequestDto) {

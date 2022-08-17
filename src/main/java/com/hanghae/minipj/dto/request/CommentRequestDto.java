@@ -8,6 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class CommentRequestDto {
-    private Long cardId;
     private String content;
 }

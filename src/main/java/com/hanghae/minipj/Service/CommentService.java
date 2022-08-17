@@ -27,7 +27,7 @@ public class CommentService {
     private final CardRepository cardRepository;
     private final TokenProvider tokenProvider;
 
-    public ResponseDto<?> createComment(HttpServletRequest request, CommentRequestDto requestDto) {
+    public ResponseDto<?> createComment(HttpServletRequest request, CommentRequestDto requestDto,Long id) {
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -38,11 +38,11 @@ public class CommentService {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
         if (requestDto.getContent() == null) {
-            ResponseDto.fail("CONTENT_EMPTY", "작성 칸이 비었습니다.");
+            return ResponseDto.fail("CONTENT_EMPTY", "작성 칸이 비었습니다.");
         }
-        Card card = isPresentCard(requestDto.getCardId());
+        Card card = isPresentCard(id);
         if(card == null){
-            ResponseDto.fail("CARD_NOT_FOUND", "해당 게시물이 존재하지 않습니다.");
+            return ResponseDto.fail("CARD_NOT_FOUND", "해당 게시물이 존재하지 않습니다.");
         }
         Comment comment = new Comment(requestDto.getContent(), card, member);
         commentRepository.save(comment);
@@ -75,11 +75,7 @@ public class CommentService {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
         if (requestDto.getContent() == null) {
-            ResponseDto.fail("CONTENT_EMPTY", "작성 칸이 비었습니다.");
-        }
-        Card card = isPresentCard(requestDto.getCardId());
-        if(card == null){
-            ResponseDto.fail("CARD_NOT_FOUND", "해당 게시물이 존재하지 않습니다.");
+            return ResponseDto.fail("CONTENT_EMPTY", "작성 칸이 비었습니다.");
         }
         Comment comment = isPresentComment(id);
         if (null == comment) {
@@ -134,7 +130,7 @@ public class CommentService {
         return tokenProvider.getMemberFromAuthentication();
     }
 
-    public ResponseDto<?> getCommentById(HttpServletRequest request, Long id) {
+    public ResponseDto<?> getCommentByCardId(HttpServletRequest request, Long id) {
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
                     "로그인이 필요합니다.");

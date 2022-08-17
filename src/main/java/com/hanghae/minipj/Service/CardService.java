@@ -30,33 +30,26 @@ public class CardService {
     private final CardRepository cardRepository;
     private final CommentRepository commentRepository;
     private final TokenProvider tokenProvider;
-
     private final S3Uploader s3Uploader;
 
     @Transactional
     public ResponseDto<?> createCard(CardRequestDto requestDto, MultipartFile multiFile, HttpServletRequest request) throws IOException {
-        System.out.println("hi");
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
                     "로그인이 필요합니다.");
         }
 
-        System.out.println("bye");
-
         Member member = validateMember(request);
         if (null == member) {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
 
-        System.out.println("ye");
         String imgUrl ="";
-        System.out.println("ra");
         if(multiFile!=null){
             imgUrl += s3Uploader.uploadFiles(multiFile, "static");
             System.out.println("to");
         }
-        System.out.println("dkdk");
         Card card = Card.builder()
                 .title(requestDto.getTitle())
                 .content(requestDto.getContent())
@@ -164,7 +157,7 @@ public class CardService {
         }
 
         if (card.validateMember(member)) {
-            return ResponseDto.fail("BAD_REQUEST", "작성자만 수정할 수 있습니다.");
+            return ResponseDto.fail("UNAUTHORIZED", "작성자만 수정할 수 있습니다.");
         }
 
         card.update(requestDto,card);
@@ -195,7 +188,7 @@ public class CardService {
         }
 
         if (card.validateMember(member)) {
-            return ResponseDto.fail("BAD_REQUEST", "작성자만 삭제할 수 있습니다.");
+            return ResponseDto.fail("UNAUTHORIZED", "작성자만 삭제할 수 있습니다.");
         }
 
         cardRepository.delete(card);

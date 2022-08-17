@@ -27,9 +27,8 @@ public class CommentController {
         return commentService.getComments();
     }
     @GetMapping("/api/cards/{id}/comments")
-    public ResponseDto<?> getCommentById(@PathVariable Long id,
-                                        HttpServletRequest request){
-        return commentService.getCommentByCardId(request,id);
+    public ResponseDto<?> getCommentById(@PathVariable Long id){
+        return commentService.getCommentByCardId(id);
     }
 
     @PutMapping("/api/auth/cards/comments/{id}")

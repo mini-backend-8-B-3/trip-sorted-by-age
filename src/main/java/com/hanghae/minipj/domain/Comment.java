@@ -29,7 +29,8 @@ import static javax.persistence.FetchType.LAZY;
         @ManyToOne(fetch = LAZY)
         private Card card;
 
-
+        @Column(nullable = false)
+        private Boolean isEditMode;
         @Column(nullable = false)
         private String content;
 
@@ -38,6 +39,7 @@ import static javax.persistence.FetchType.LAZY;
             this.content=content;
             this.card =card;
             this.member =member;
+            this.isEditMode = false;
         }
 
         public void update(CommentRequestDto commentRequestDto) {

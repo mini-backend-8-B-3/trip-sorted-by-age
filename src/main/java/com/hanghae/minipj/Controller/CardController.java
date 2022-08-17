@@ -5,9 +5,12 @@ import com.hanghae.minipj.Service.CardService;
 import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.dto.request.CardRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 
 @RequiredArgsConstructor
@@ -17,9 +20,13 @@ public class CardController {
     private final CardService cardService;
 
     @PostMapping("/api/auth/cards")
-    public ResponseDto<?> createCard(@RequestBody CardRequestDto requestDto,
-                                     HttpServletRequest request) {
-        return cardService.createCard(requestDto, request);
+    public ResponseDto<?> createCard(@RequestPart("data") CardRequestDto requestDto,
+                                     HttpServletRequest request,@RequestPart("image") @Nullable MultipartFile multipartFile){
+        try {
+            return cardService.createCard(requestDto, multipartFile,request);
+        } catch (IOException e) {
+            throw new RuntimeException("어라? 뭐가 잘못됐지?");
+        }
     }
 
     @GetMapping("/api/cards/{cardId}")

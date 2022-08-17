@@ -1,21 +1,24 @@
 package com.hanghae.minipj.Service;
 
 
-import com.hanghae.minipj.dto.response.CommentResponseDto;
+import com.hanghae.minipj.S3.S3Uploader;
 import com.hanghae.minipj.domain.Card;
 import com.hanghae.minipj.domain.Comment;
 import com.hanghae.minipj.domain.Member;
 import com.hanghae.minipj.dto.ResponseDto;
 import com.hanghae.minipj.dto.request.CardRequestDto;
 import com.hanghae.minipj.dto.response.CardResponseDto;
+import com.hanghae.minipj.dto.response.CommentResponseDto;
 import com.hanghae.minipj.jwt.TokenProvider;
 import com.hanghae.minipj.repository.CardRepository;
 import com.hanghae.minipj.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,9 +30,10 @@ public class CardService {
     private final CardRepository cardRepository;
     private final CommentRepository commentRepository;
     private final TokenProvider tokenProvider;
+    private final S3Uploader s3Uploader;
 
     @Transactional
-    public ResponseDto<?> createCard(CardRequestDto requestDto, HttpServletRequest request) {
+    public ResponseDto<?> createCard(CardRequestDto requestDto, MultipartFile multiFile, HttpServletRequest request) throws IOException {
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -41,10 +45,15 @@ public class CardService {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
 
+        String imgUrl ="";
+        if(multiFile!=null){
+            imgUrl += s3Uploader.uploadFiles(multiFile, "static");
+            System.out.println("to");
+        }
         Card card = Card.builder()
                 .title(requestDto.getTitle())
                 .content(requestDto.getContent())
-                .imgUrl(requestDto.getImgUrl())
+                .imgUrl(imgUrl)
                 .nickname(member.getNickname())
                 .place(requestDto.getPlace())
                 .star(requestDto.getStar())
@@ -148,7 +157,7 @@ public class CardService {
         }
 
         if (card.validateMember(member)) {
-            return ResponseDto.fail("BAD_REQUEST", "작성자만 수정할 수 있습니다.");
+            return ResponseDto.fail("UNAUTHORIZED", "작성자만 수정할 수 있습니다.");
         }
 
         card.update(requestDto,card);
@@ -179,7 +188,7 @@ public class CardService {
         }
 
         if (card.validateMember(member)) {
-            return ResponseDto.fail("BAD_REQUEST", "작성자만 삭제할 수 있습니다.");
+            return ResponseDto.fail("UNAUTHORIZED", "작성자만 삭제할 수 있습니다.");
         }
 
         cardRepository.delete(card);

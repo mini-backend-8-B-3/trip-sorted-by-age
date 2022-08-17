@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class CardRequestDto {
     private String title;
     private String content;
-    private String imgUrl;
     private int star;
     private String place;
 }

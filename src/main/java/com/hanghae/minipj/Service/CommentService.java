@@ -27,7 +27,7 @@ public class CommentService {
     private final CardRepository cardRepository;
     private final TokenProvider tokenProvider;
 
-    public ResponseDto<?> createComment(HttpServletRequest request, CommentRequestDto requestDto) {
+    public ResponseDto<?> createComment(HttpServletRequest request, CommentRequestDto requestDto,Long id) {
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -38,15 +38,22 @@ public class CommentService {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
         if (requestDto.getContent() == null) {
-            ResponseDto.fail("CONTENT_EMPTY", "작성 칸이 비었습니다.");
+            return ResponseDto.fail("CONTENT_EMPTY", "작성 칸이 비었습니다.");
         }
-        Card card = isPresentCard(requestDto.getCardId());
+        Card card = isPresentCard(id);
         if(card == null){
-            ResponseDto.fail("CARD_NOT_FOUND", "해당 게시물이 존재하지 않습니다.");
+            return ResponseDto.fail("CARD_NOT_FOUND", "해당 게시물이 존재하지 않습니다.");
         }
         Comment comment = new Comment(requestDto.getContent(), card, member);
         commentRepository.save(comment);
-        return ResponseDto.success(null);
+        CommentResponseDto commentResponseDto = CommentResponseDto.builder()
+                .id(comment.getId())
+                .nickname(comment.getMember().getNickname())
+                .content(comment.getContent())
+                .createdAt(comment.getCreatedAt())
+                .isEditMode(comment.getIsEditMode())
+                .build();
+        return ResponseDto.success(commentResponseDto);
     }
 
     public ResponseDto<?> getComments() {
@@ -75,11 +82,7 @@ public class CommentService {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
         if (requestDto.getContent() == null) {
-            ResponseDto.fail("CONTENT_EMPTY", "작성 칸이 비었습니다.");
-        }
-        Card card = isPresentCard(requestDto.getCardId());
-        if(card == null){
-            ResponseDto.fail("CARD_NOT_FOUND", "해당 게시물이 존재하지 않습니다.");
+            return ResponseDto.fail("CONTENT_EMPTY", "작성 칸이 비었습니다.");
         }
         Comment comment = isPresentComment(id);
         if (null == comment) {
@@ -87,7 +90,7 @@ public class CommentService {
         }
 
         if (comment.validateMember(member)) {
-            return ResponseDto.fail("BAD_REQUEST", "작성자만 수정할 수 있습니다.");
+            return ResponseDto.fail("UNAUTHORIZED", "작성자만 수정할 수 있습니다.");
         }
         comment.update(requestDto);
         CommentResponseDto commentResponseDto= CommentResponseDto.builder()
@@ -110,7 +113,11 @@ public class CommentService {
         if (null == member) {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
+
        Comment comment =isPresentComment(id);
+        if (comment.validateMember(member)) {
+            return ResponseDto.fail("UNAUTHORIZED", "작성자만 삭제할 수 있습니다.");
+        }
         commentRepository.delete(comment);
         return ResponseDto.success(null);
     }
@@ -134,15 +141,7 @@ public class CommentService {
         return tokenProvider.getMemberFromAuthentication();
     }
 
-    public ResponseDto<?> getCommentById(HttpServletRequest request, Long id) {
-        if (null == request.getHeader("Authorization")) {
-            return ResponseDto.fail("MEMBER_NOT_FOUND",
-                    "로그인이 필요합니다.");
-        }
-        Member member = validateMember(request);
-        if (null == member) {
-            return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
-        }
+    public ResponseDto<?> getCommentByCardId(Long id) {
         List<Comment> commentList =commentRepository.findAllByCardIdOrderByCreatedAtDesc(id);
         List<CommentResponseDto> commentResponseDtoList =new ArrayList<>();
         for(Comment comment:commentList){
@@ -152,6 +151,7 @@ public class CommentService {
                             .nickname(comment.getMember().getNickname())
                             .content(comment.getContent())
                             .createdAt(comment.getCreatedAt())
+                            .isEditMode(comment.getIsEditMode())
                             .build()
             );
         }

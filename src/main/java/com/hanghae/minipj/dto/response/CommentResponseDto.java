@@ -11,5 +11,6 @@ public class CommentResponseDto {
     private String nickname;
     private String content;
     private LocalDateTime createdAt;
+    private Boolean isEditMode;
 
 }

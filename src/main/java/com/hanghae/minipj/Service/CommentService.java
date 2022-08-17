@@ -146,27 +146,31 @@ public class CommentService {
         if (requestDto.getContent() == null) {
             ResponseDto.fail("CONTENT_EMPTY", "작성 칸이 비었습니다.");
         }
-        Card card = isPresentCard(requestDto.getCardId());
-        if(card == null){
-            ResponseDto.fail("CARD_NOT_FOUND", "해당 게시물이 존재하지 않습니다.");
+        Comment comment = isPresentComment(id);
+        if(comment == null){
+            ResponseDto.fail("COMMENT_NOT_FOUND", "해당 게시물이 존재하지 않습니다.");
         }
-        Comment comment = new Comment(requestDto.getContent(), card, member);
-        commentRepository.save(comment);
+        Comment reComment = new Comment(requestDto.getContent(), comment.getCard(), member,comment);
+        commentRepository.save(reComment);
         return ResponseDto.success(null);
     }
 
     public ResponseDto<?> getReComments(Long id) {
         List<CommentResponseDto> reCommentList = new ArrayList<>();
-        List<Comment> commentList = commentRepository.findAllByParentIdOrderByCreatedAtDesc(id);
-        for (Comment comment : commentList) {
+        Comment comment =isPresentComment(id);
+        List<Comment> commentList = commentRepository.findAllByCommentOrderByCreatedAtDesc(comment);
+        for (Comment reComment : commentList) {
             reCommentList.add(
                     CommentResponseDto.builder()
-                            .content(comment.getContent())
-                            .nickname(comment.getMember().getNickname())
-                            .createdAt(comment.getCreatedAt())
+                            .content(reComment.getContent())
+                            .nickname(reComment.getMember().getNickname())
+                            .createdAt(reComment.getCreatedAt())
                             .build()
             );
         }
         return ResponseDto.success(reCommentList);
     }
+
+
+
 }

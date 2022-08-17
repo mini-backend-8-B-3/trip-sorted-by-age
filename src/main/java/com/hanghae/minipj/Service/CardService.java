@@ -73,7 +73,7 @@ public class CardService {
             return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
         }
 
-        List<Comment> commentList = commentRepository.findAllByCard(card);
+        List<Comment> commentList = commentRepository.findAllByCardOrderByCreatedAtDesc(card);
         List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
 
         for (Comment comment : commentList) {
@@ -106,7 +106,7 @@ public class CardService {
 
     @Transactional(readOnly = true)
     public ResponseDto<?> getAllCard() {
-        List<Card> cardList = cardRepository.findAllByOrderByModifiedAtDesc();
+        List<Card> cardList = cardRepository.findAllByOrderByCreatedAtDesc();
         List<CardResponseDto> cardResponseDtoList = new ArrayList<>();
 
         for (Card card : cardList) {

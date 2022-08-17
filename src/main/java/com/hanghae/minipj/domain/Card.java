@@ -50,12 +50,12 @@ public class Card extends Timestamped {
     private Member member;
 
 
-    public void update(CardRequestDto cardRequestDto) {
-        this.title = cardRequestDto.getTitle();
+    public void update(CardRequestDto cardRequestDto,Card card) {
+        this.title = card.getTitle();
         this.content = cardRequestDto.getContent();
-        this.imgUrl =cardRequestDto.getImgUrl();
-        this.place =cardRequestDto.getPlace();
-        this.star=cardRequestDto.getStar();
+        this.imgUrl =card.getImgUrl();
+        this.place =card.getPlace();
+        this.star=card.getStar();
     }
 
     public boolean validateMember(Member member) {

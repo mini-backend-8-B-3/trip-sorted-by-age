@@ -131,10 +131,6 @@ public class CardService {
 
     @Transactional
     public ResponseDto<?> updateCard(Long id, CardRequestDto requestDto, HttpServletRequest request) {
-//        if (null == request.getHeader("Refresh-Token")) {
-//            return ResponseDto.fail("MEMBER_NOT_FOUND",
-//                    "로그인이 필요합니다.");
-//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -155,27 +151,17 @@ public class CardService {
             return ResponseDto.fail("BAD_REQUEST", "작성자만 수정할 수 있습니다.");
         }
 
-        card.update(requestDto);
+        card.update(requestDto,card);
         return ResponseDto.success(
                 CardResponseDto.builder()
                         .id(card.getId())
-                        .nickname(card.getMember().getNickname())
-                        .title(card.getTitle())
                         .content(card.getContent())
-                        .star(card.getStar())
-                        .place(card.getPlace())
-                        .imgUrl(card.getImgUrl())
-                        .createdAt(card.getCreatedAt())
                         .build()
         );
     }
 
     @Transactional
     public ResponseDto<?> deleteCard(Long id, HttpServletRequest request) {
-//        if (null == request.getHeader("Refresh-Token")) {
-//            return ResponseDto.fail("MEMBER_NOT_FOUND",
-//                    "로그인이 필요합니다.");
-//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",

@@ -8,6 +8,8 @@ import com.hanghae.minipj.dto.request.TokenDto;
 import com.hanghae.minipj.jwt.TokenProvider;
 import com.hanghae.minipj.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -101,6 +103,5 @@ public class MemberService {
         response.addHeader("Refresh-Token", tokenDto.getRefreshToken());
         response.addHeader("Access-Token-Expire-Time", tokenDto.getAccessTokenExpiresIn().toString());
     }
-
 
 }

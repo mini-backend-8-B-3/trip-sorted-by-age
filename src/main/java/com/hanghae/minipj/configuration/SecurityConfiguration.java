@@ -71,8 +71,6 @@ public class SecurityConfiguration {
                 .antMatchers("/api/comments/**").permitAll()
                 .anyRequest().authenticated()
 
-
-
                 .and()
                 .apply(new JwtSecurityConfiguration(SECRET_KEY, tokenProvider, userDetailsService));
 

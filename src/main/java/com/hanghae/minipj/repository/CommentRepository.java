@@ -12,10 +12,10 @@ import java.util.Optional;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     Optional<Comment> findById(Long id);
 
-    @Query("select DISTINCT m from Comment m join fetch m.member")
+    @Query("select DISTINCT m from Comment m join fetch m.member ORDER BY m.createdAt DESC ")
     List<Comment> findAllBy();
-    @Query("select DISTINCT m from Comment m join fetch m.member")
+    @Query("select DISTINCT m from Comment m join fetch m.member ORDER BY m.createdAt DESC ")
     List<Comment> findAllByCardOrderByCreatedAtDesc(Card card);
-    @Query("select DISTINCT m from Comment m join fetch m.member")
+    @Query("select DISTINCT m from Comment m join fetch m.member ORDER BY m.createdAt DESC ")
     List<Comment> findAllByCardIdOrderByCreatedAtDesc(Long cardId);
 }

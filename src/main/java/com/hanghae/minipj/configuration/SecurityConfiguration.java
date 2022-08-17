@@ -69,8 +69,6 @@ public class SecurityConfiguration {
                 .antMatchers("/users/**").permitAll()
                 .antMatchers("/api/cards/**").permitAll()
                 .antMatchers("/api/comments/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
 
 

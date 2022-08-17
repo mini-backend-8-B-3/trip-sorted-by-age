@@ -65,10 +65,6 @@ public class CommentService {
     }
 
     public ResponseDto<?> updateComment(Long id, HttpServletRequest request, CommentRequestDto requestDto){
-//        if (null == request.getHeader("Refresh-Token")) {
-//            return ResponseDto.fail("MEMBER_NOT_FOUND",
-//                    "로그인이 필요합니다.");
-//        }
 
         if (null == request.getHeader("Authorization")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -136,5 +132,29 @@ public class CommentService {
             return null;
         }
         return tokenProvider.getMemberFromAuthentication();
+    }
+
+    public ResponseDto<?> getCommentById(HttpServletRequest request, Long id) {
+        if (null == request.getHeader("Authorization")) {
+            return ResponseDto.fail("MEMBER_NOT_FOUND",
+                    "로그인이 필요합니다.");
+        }
+        Member member = validateMember(request);
+        if (null == member) {
+            return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
+        }
+        List<Comment> commentList =commentRepository.findAllByCardIdOrderByCreatedAtDesc(id);
+        List<CommentResponseDto> commentResponseDtoList =new ArrayList<>();
+        for(Comment comment:commentList){
+            commentResponseDtoList.add(
+                    CommentResponseDto.builder()
+                            .id(comment.getId())
+                            .nickname(comment.getMember().getNickname())
+                            .content(comment.getContent())
+                            .createdAt(comment.getCreatedAt())
+                            .build()
+            );
+        }
+        return ResponseDto.success(commentResponseDtoList);
     }
 }

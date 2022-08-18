@@ -172,7 +172,7 @@ public class CardService {
     @Transactional
     public ResponseDto<?> deleteCard(Long id, HttpServletRequest request) {
 
-        if (null == request.getHeader("Authorization")) {
+        if (null == request.getHeader("Authorization")) {//AOP로 처리
             return ResponseDto.fail("MEMBER_NOT_FOUND",
                     "로그인이 필요합니다.");
         }

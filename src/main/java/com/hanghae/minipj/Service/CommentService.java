@@ -118,6 +118,9 @@ public class CommentService {
         if (comment.validateMember(member)) {
             return ResponseDto.fail("UNAUTHORIZED", "작성자만 삭제할 수 있습니다.");
         }
+        if (member!=comment.getMember()) {
+            return ResponseDto.fail("UNAUTHORIZED", "작성자만 삭제할 수 있습니다.");
+        }
         commentRepository.delete(comment);
         return ResponseDto.success(null);
     }

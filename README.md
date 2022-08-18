@@ -42,7 +42,7 @@ JWT 인증 방식으로 로그인 구현
   
 5.이미지 업로드
 
-사용하지 않는 기능: 댓글 수정, 대댓글 (branch: recomment-basic)
+사용하지 않는 기능: 대댓글 (branch: recomment-basic)
 ```
 
 ## 🎥데모영상

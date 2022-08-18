@@ -1,9 +1,12 @@
 # 욜로GO
 
-One Paragraph of project description goes here
+지금 이 순간 가장 즐거운 순간을 저장한다.
+여행도 숫자에 불과해!
+여행하GO, 추천하GO, 가보자GO!
 
-### 개발기간
+**개발기간**
 2022.08.12-2022.08.18
+
 
 ## 팀원소개
 
@@ -13,27 +16,19 @@ One Paragraph of project description goes here
 ## 기술스택
 
 ### 백엔드
-<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=SpringBoot&logoColor=white"/> <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat&logo=Spring Security&logoColor=white"/> <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=java&logoColor=white"/>  <img src="https://img.shields.io/badge/JWT-000000?style=flat&logo=JWT&logoColor=white"/> <img src="https://img.shields.io/badge/Gradle-02303A?style=flat&logo=Gradle&logoColor=white"/> 
+<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=SpringBoot&logoColor=white"/> <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat&logo=Spring Security&logoColor=white"/> <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=java&logoColor=white"/>  <img src="https://img.shields.io/badge/JWT-000000?style=flat&logo=JWT&logoColor=white"/> <img src="https://img.shields.io/badge/Gradle-02303A?style=flat&logo=Gradle&logoColor=white"/> <img src="https://img.shields.io/badge/amazon s3-569A31?flat&logo=Gradle&logo=amazons3&logoColor=green">
 
 ### 프론트엔드
- [프론트엔드 깃허브]( https://github.com/byjgpark/W6_Mini_Project_Team3)
-<div>
-<img src="https://img.shields.io/badge/axios-1877F2?style=flat&logo=ssockjs&logoColor=white">
-<img src="https://img.shields.io/badge/sockjs-1877F2?style=flat&logo=ssockjs&logoColor=white">
-<img src="https://img.shields.io/badge/stomp-1877F2?style=flat&logo=stomp&logoColor=white">
-<img src="https://img.shields.io/badge/ApexChart-1877F2?style=flat&logo=ApexChart&logoColor=white"><br/>
+ <div><br/>
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
 <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <br>
 <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=pink">
 <img src="https://img.shields.io/badge/react query-61DAFB?style=for-the-badge&logo=reactquery&logoColor=FF4154">
-<img src="https://img.shields.io/badge/recoil-F7A81B?style=for-the-badge&logo=route53&logoColor=white"><br>
-<img src="https://img.shields.io/badge/amazon s3-569A31?style=for-the-badge&logo=amazons3&logoColor=green">
-<img src="https://img.shields.io/badge/github actions-2088FF?style=for-the-badge&logo=github actions&logoColor=white">
-<img src="https://img.shields.io/badge/cloudfront-04ACE6?style=for-the-badge&logo=cloudfront&logoColor=white">
-<img src="https://img.shields.io/badge/route 53-F7A81B?style=for-the-badge&logo=route53&logoColor=white">
-<div/>
+<img src="https://img.shields.io/badge/amazon s3-569A31?style=for-the-badge&logo=amazons3&logoColor=green"></div>
+[프론트엔드 깃허브로 이동하기]( https://github.com/byjgpark/W6_Mini_Project_Team3)
+
   
 
 ## 핵심기능
@@ -48,7 +43,7 @@ JWT 인증 방식으로 로그인 구현
 게시글 목록 조회, 등록, 수정, 삭제, 상세조회
 
 4. 댓글 CRUD
-게시글 별 댓글 조회, 수정, 삭제
+게시글 별 댓글 조회, 삭제
   
 5.이미지 업로드
 ```

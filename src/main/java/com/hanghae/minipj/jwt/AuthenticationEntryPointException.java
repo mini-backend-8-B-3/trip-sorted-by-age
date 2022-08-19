@@ -24,7 +24,6 @@ public class AuthenticationEntryPointException implements AuthenticationEntryPoi
                 )
         );
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-
     }
 
 }
